@@ -12,45 +12,55 @@
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
-	<script type="text/javascript">
-		var remail= new RegExp(([a-z]*)([1-9]{3})(@ikasle.ehu.[es|eus])); //idnum=1
-		var repsw= new RegExp(.{6,});									  //idnum=2
-		var retel = new RegExp([0-9]{9});								  //idnum=3 
+	<script type="text/javascript">		
+		var sAux="";
+		var frm=document.getElementById("erregistro");
 		
 		function ikusBalioak(){
-			var sAux="";
-			var frm=document.getElementById("erregistro");
-			var x = true;
-			for(i=1;i<frm.elements.length;i++){
-			if (frm.elements[i].value == null || frm.elements[i].value == "" ) {
-				
-				sAux +="IZENA: " + frm.elements[i].name+"";
-				sAux +="BALIOA: " + frm.elements[i].value+"\n";
-				
-				if(i==1 && frm.elements[i].value != remail.test()){
-					
-					sAux += frm.elements[i].name+" eremua betetzea derrigorrezkoa da!!!\n";				
-					x = false;
-				}else if( i==2 && frm.elements[i].value != repsw.test()){				
-						
-						sAux += frm.elements[i].name+" eremua betetzea derrigorrezkoa da!!!\n";
-						
-						x = false;
-						
-						}else if(i==3 && frm.elements[i].value != retel.test()){							
-								
-								sAux += frm.elements[i].name+" eremua betetzea derrigorrezkoa da!!!\n";
-								x = false;																							
-						}		
-			}else {					
-				
+			
+			var emaitza = true;
+			for(i=0;i<frm.elements.length;i++){
+				if (frm.elements[i].value == null || frm.elements[i].value == "" ||!validatemail()||!validatepssw||!validatetel()) {
+					alert("Arazoak datuak sartzean!!");
+					emaitza=false;
+			
 				}
 			}
 		
-		alert(sAux);
-		return boolean (x);
+		return boolean (emaitza);
 		}
 	</script>
+  
+	<script type="text/javascript">
+		
+		function validatemail( ){}
+		alert("probatzen");
+		var frm=document.getElementById("erregistro");
+		var remail= new RegExp(([a-z]*)([1-9]{3})(@ikasle.ehu.[es|eus])); //idnum=1
+		if(frm.elements[1].value = remail.test() ){
+			return true;
+		}	
+	</script>
+	
+	<script type="text/javascript">
+	
+		function validatepssw( ){}
+		var frm=document.getElementById("erregistro");
+		var repsw= new RegExp(.{6,});									  //idnum=2
+		if(frm.elements[2].value = repsw.test() ){
+			return true;
+		}	
+	</script>
+		<script type="text/javascript">
+	
+		function validatetel( ){}
+		var retel = new RegExp([0-9]{9});								  //idnum=3 
+		var frm=document.getElementById("erregistro");
+		if(frm.elements[3].value = retel.test() ){
+			return true;
+		}	
+	</script>
+  
   </head>
   <body>
 	
