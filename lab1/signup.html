@@ -13,14 +13,42 @@
 		   media='only screen and (max-width: 480px)'
 		   href='stylesPWS/smartphone.css' />
 	<script type="text/javascript">
+		var remail= new RegExp(([a-z]*)([1-9]{3})(@ikasle.ehu.[es|eus])); //idnum=1
+		var repsw= new RegExp(.{6,});									  //idnum=2
+		var retel = new RegExp([0-9]{9});								  //idnum=3 
+		
 		function ikusBalioak(){
 			var sAux="";
 			var frm=document.getElementById("erregistro");
+			var x = true;
 			for(i=1;i<frm.elements.length;i++){
-			sAux +="IZENA: " + frm.elements[i].name+"";
-			sAux +="BALIOA: " + frm.elements[i].value+"\n";
-		}
+			if (frm.elements[i].value == null || frm.elements[i].value == "" ) {
+				
+				sAux +="IZENA: " + frm.elements[i].name+"";
+				sAux +="BALIOA: " + frm.elements[i].value+"\n";
+				
+				if(i==1 && frm.elements[i].value != remail.test()){
+					
+					sAux += frm.elements[i].name+" eremua betetzea derrigorrezkoa da!!!\n";				
+					x = false;
+				}else if( i==2 && frm.elements[i].value != repsw.test()){				
+						
+						sAux += frm.elements[i].name+" eremua betetzea derrigorrezkoa da!!!\n";
+						
+						x = false;
+						
+						}else if(i==3 && frm.elements[i].value != retel.test()){							
+								
+								sAux += frm.elements[i].name+" eremua betetzea derrigorrezkoa da!!!\n";
+								x = false;																							
+						}		
+			}else {					
+				
+				}
+			}
+		
 		alert(sAux);
+		return boolean (x);
 		}
 	</script>
   </head>
@@ -28,19 +56,19 @@
 	
 	<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()">
 		Izen-abizenak(*)<br>
-		<input id="izenabizenak" type="text" name="izenabizenak">
+		<input id="izenabizenak" type="text" name="Izen-abizenak">
 		<br>
 		Eposta elektronikoa(*)<br>
-		<input id="eposta" type="text" name="eposta">
+		<input id="eposta" type="text" name="E-posta">
 		<br>
 		Pasahitza(*)<br>
-		<input id="pasahitza" type="password" name="pasahitza">
+		<input id="pasahitza" type="password" name="Pasahitza">
 		<br>
 		Telefono zenbakia(*)<br>
-		<input id="telefonoa" type="text" name="telefonoa">
+		<input id="telefonoa" type="text" name="Telefonoa">
 		<br>
 		Espezialitatea(*)<br>
-		<select id="espezialitatea" name="espezialitatea">
+		<select id="espezialitatea" name="Espezialitatea">
 			<option value="software">Software Ingeniaritza</option>
 			<option value="konputazioa">Konputazioa</option>
 			<option value="konputagailu">Konputagailu Ingeniaritza</option>
@@ -48,12 +76,12 @@
 		</select>
 		<br>
 		Interesa duzun teknologia eta herramintak:<br>
-		<textarea id="interesak" name="interesak" rows="4" cols="50"></textarea>
+		<textarea id="interesak" name="Interesak" rows="4" cols="50"></textarea>
 		<br>
 		Argazkia<br>
-		<input id="argazkia" type="file" name="argazkia">
+		<input id="argazkia" type="file" name="Argazkia">
 		<br>
-		<input id="bidali" name="bidali" type="submit" value="Bidali">
+		<input id="bidali" name="Bidali" type="submit" value="Bidali">
 		<br>
 	</form>
 	<span>
