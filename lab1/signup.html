@@ -25,24 +25,26 @@
 	</script>
   </head>
   <body>
+	
 	<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()">
 		Izen-abizenak(*)<br>
 		<input id="izenabizenak" type="text" name="izenabizenak">
 		<br>
 		Eposta elektronikoa(*)<br>
-		<input id="eposta" type="email" name="eposta">
+		<input id="eposta" type="text" name="eposta">
 		<br>
 		Pasahitza(*)<br>
 		<input id="pasahitza" type="password" name="pasahitza">
 		<br>
 		Telefono zenbakia(*)<br>
-		<input id="telefonoa" type="tel" name="telefonoa">
+		<input id="telefonoa" type="text" name="telefonoa">
 		<br>
 		Espezialitatea(*)<br>
 		<select id="espezialitatea" name="espezialitatea">
 			<option value="software">Software Ingeniaritza</option>
 			<option value="konputazioa">Konputazioa</option>
 			<option value="konputagailu">Konputagailu Ingeniaritza</option>
+			<option value="beste">Besterik</option>
 		</select>
 		<br>
 		Interesa duzun teknologia eta herramintak:<br>
@@ -54,5 +56,8 @@
 		<input id="bidali" name="bidali" type="submit" value="Bidali">
 		<br>
 	</form>
+	<span>
+		<a href="layout.html">Atzera</a><br>
+	</span>	
   </body>
 </html>
