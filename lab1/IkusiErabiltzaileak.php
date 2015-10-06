@@ -19,7 +19,7 @@
 	<body>
 		<table width="800" border="1" cellpadding="1" cellspacing="1">
 			<tr>
-				<th>Izena</th>
+				<th>IzenAbizenak</th>
 				<th>E-posta</th>
 				<th>Pasahitza</th>
 				<th>Telefonoa</th>
@@ -31,7 +31,7 @@
 			
 				while($erabiltzaile=mysql_fetch_assoc($records)) {
 					echo "<tr>";
-					echo "<td>".$erabiltzaile['Izena']."</td>";
+					echo "<td>".$erabiltzaile['IzenAbizenak']."</td>";
 					echo "<td>".$erabiltzaile['Eposta']."</td>";
 					echo "<td>".$erabiltzaile['Pasahitza']."</td>";
 					echo "<td>".$erabiltzaile['Telefonoa']."</td>";
