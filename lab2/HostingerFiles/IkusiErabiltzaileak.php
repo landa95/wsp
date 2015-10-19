@@ -1,8 +1,8 @@
 <?php
 	// Konexioa sortu
-	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
+	$sql = mysql_connect('mysql.hostinger.es', 'u609685926_landa', 'quiz00') or die(mysql_error());
 	// Konexioa egiaztatu
-	mysql_select_db("quiz") or die(mysql_error());
+	mysql_select_db("u609685926_quiz") or die(mysql_error());
 	$sql="SELECT * FROM `erabiltzaile` ";
 	$records = mysql_query($sql);
 	if (! $records)

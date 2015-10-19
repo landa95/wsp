@@ -31,7 +31,7 @@
 			<?php
 			
 				while($erabiltzaile=mysql_fetch_assoc($records)) {
-					$lerroa = "<tr><td>" . $erabiltzaile['Eposta'] . '</td> <td>' . $erabiltzaile['Izena'] . '</td><td>' . $erabiltzaile['Pasahitza'] . '</td><td>';
+					$lerroa = "<tr><td>" . $erabiltzaile['Eposta'] . '</td> <td>' . $erabiltzaile['IzenAbizenak'] . '</td><td>' . $erabiltzaile['Pasahitza'] . '</td><td>';
 					$lerroa = $lerroa . $erabiltzaile['Telefonoa'] . '</td> <td>' . $erabiltzaile['Espezialitatea'] . '</td><td>' . $erabiltzaile['Interesak'] . '</td><td>';
 					$lerroa = $lerroa . '</td> <td><img height="70" width="150" align="middle" src="IkusArgazkia.php?id='.$erabiltzaile['Eposta'].'"/>' . '</td></tr>';
 					echo $lerroa;

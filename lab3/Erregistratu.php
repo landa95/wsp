@@ -27,11 +27,11 @@
 		if($check !== false) {
 			echo "Igotako argazkia - " . $check["mime"] . ".";
 			$uploadOk = 1;
-			$sql="INSERT INTO Erabiltzaile(Izena, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesak, Argazkia) VALUES ('$_POST[Izenabizenak]', '$_POST[Eposta]', '$_POST[Pasahitza]', '$_POST[Telefonoa]', '$_POST[Espezialitatea]', '$_POST[Interesak]', '$edukia')";
+			$sql="INSERT INTO Erabiltzaile(IzenAbizenak, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesak, Argazkia) VALUES ('$_POST[Izenabizenak]', '$_POST[Eposta]', '$_POST[Pasahitza]', '$_POST[Telefonoa]', '$_POST[Espezialitatea]', '$_POST[Interesak]', '$edukia')";
 		} else {
 			echo "Ez da argazkirik igo.<br>";
 			$uploadOk = 0;
-			$sql="INSERT INTO Erabiltzaile(Izena, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesak) VALUES ('$_POST[Izenabizenak]', '$_POST[Eposta]', '$_POST[Pasahitza]', '$_POST[Telefonoa]', '$_POST[Espezialitatea]', '$_POST[Interesak]')";
+			$sql="INSERT INTO Erabiltzaile(IzenAbizenak, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesak) VALUES ('$_POST[Izenabizenak]', '$_POST[Eposta]', '$_POST[Pasahitza]', '$_POST[Telefonoa]', '$_POST[Espezialitatea]', '$_POST[Interesak]')";
 		}
 	}	
 	if (!mysql_query($sql))
