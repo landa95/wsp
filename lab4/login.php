@@ -34,7 +34,9 @@
 		}
 
 		if($result[0]!=null){
-			header("location:quizzes.html");
+			session_start();
+			$_SESSION['Eposta'] = $_POST['Eposta'];
+			header("location:php/InsertQuestion.php");
 		}else{
 			$zuzenabi=0;
 		}

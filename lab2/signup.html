@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="stylesPWS/style.css">
 	<link rel="stylesheet" 
@@ -18,7 +18,7 @@
 			var frm = document.getElementById("erregistro");
 			var iza = new RegExp('[A-Z]+[a-z]* {1}[A-Z]+[a-z]* {1}[A-Z]+[a-z]*');
 			var pas = new RegExp('.{6,}');
-			var epo = new RegExp('[a-z]+[0-9]{3}@ikasle\.ehu\.(es|eus)');
+			var epo = new RegExp('[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)');
 			var tel = new RegExp('[0-9]{9}');
 			//2garren opzioa:
 			//var iza = /[A-Z]+[a-z]* {1}[A-Z]+[a-z]* {1}[A-Z]+[a-z]*/;
@@ -80,14 +80,14 @@
 				}
 			}
 			alert(sAux);
-			return false;
+			return boo;
 		}
 	</script>
   </head>
   <body>
-	<form action="Erabiltzaileak.php" id="erregistro" name="erregistro" onSubmit= ikusBalioak() method="post">
+	<form action="Erregistratu.php" method="post" enctype="multipart/form-data" id="erregistro" name="erregistro" onSubmit="return ikusBalioak()">
 		Izen-abizenak(*)<br>
-		<input id="izenabizenak" type="text" name="IzenAbizenak">
+		<input id="izenabizenak" type="text" name="Izenabizenak">
 		<br>
 		Eposta elektronikoa(*)<br>
 		<input id="eposta" type="email" name="Eposta">
