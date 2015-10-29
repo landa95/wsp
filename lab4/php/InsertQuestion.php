@@ -1,8 +1,4 @@
 <?php
-	// Konexioa sortu
-	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
-	// Konexioa egiaztatu
-	//mysql_select_db("u275359965_quiz") or die(mysql_error());
 	// Konexioa lokala sortu
 	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
 	// Konexioa lokala egiaztatu
@@ -31,9 +27,27 @@
 		$ip = $_SERVER["REMOTE_ADDR"];
 		$mota = "Galdera txertatu";
 		
+		
+		$xml=simplexml_load_file('galderak.xml');
+		
+				
 		if($hutsa == 1) {
 			$sqlgaldera="INSERT INTO Galderak(Eposta, Galdera, Erantzuna, Zailtasuna) VALUES ('$eposta', '$galdera', '$erantzuna', '$zailtasuna')";
 			$sqlkonexioa="INSERT INTO Konexioak(Eposta, K_Ordua) VALUES ('$eposta', '$ordua')";
+			
+			
+			$assesItem = $xml->addchild('assesmentItem');
+			$assesItem-> addAttribute('komplexutasuna', $zailtasuna);
+			$assesItem-> addAttribute('subject', 'Hutsik');
+		
+			$Itembody= -> addChild('itemBody');
+			$Itembody-> addChild('p', $erantzuna);
+			$cResponse= $assesItem ->addChild('correctResponse');
+			$Value= $cResponse-> addChild('value',$erantzuna);
+		
+			$xml->asXML('galderak.xml');
+			echo $xml->asXML();
+			
 			if (!mysql_query($sqlgaldera) || !mysql_query($sqlkonexioa))
 			{
 				die('Errorea: ' . mysql_error());
@@ -68,7 +82,7 @@
 		<link rel='stylesheet' type='text/css' href='stylesPWS/style.css'>
 		<link rel='stylesheet' 
 			   type='text/css' 
-			   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+			   media='only scree0n and (min-width: 530px) and (min-device-width: 481px)'
 			   href='stylesPWS/wide.css'>
 		<link rel='stylesheet' 
 			   type='text/css' 
