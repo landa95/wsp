@@ -27,8 +27,14 @@
 		$ip = $_SERVER["REMOTE_ADDR"];
 		$mota = "Galdera txertatu";
 		
-		
+		libxml_use_internal_errors(true);
 		$xml=simplexml_load_file('galderak.xml');
+		
+		if ($xml === false) {						
+			echo "Arazoa XML-a kargatzen!\n";
+			foreach(libxml_get_errors() as $error) {
+			echo "\t", $error->message;}
+		}
 		
 		
 		if($hutsa == 1) {
@@ -45,9 +51,8 @@
 			$cResponse= $assesItem ->addChild('correctResponse');
 			$Value= $cResponse-> addChild('value',$erantzuna);
 		
-			$xml->asXML('galderak.xml');
-			echo $galdera;
-			echo $xml->asXML();
+			
+
 			
 			if (!mysql_query($sqlgaldera) || !mysql_query($sqlkonexioa))
 			{
@@ -73,6 +78,11 @@
 		else {
 			echo "Kutxetako bat hutsik dago!";
 		}
+		
+		$host  = $_SERVER['HTTP_HOST'];
+		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+		$extra = 'seeXMLQuestions.php';
+		header("Location: http://$host$uri/$extra");
 	}
 ?>
 <!DOCTYPE html>
