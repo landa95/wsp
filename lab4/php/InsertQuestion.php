@@ -30,7 +30,7 @@
 		
 		$xml=simplexml_load_file('galderak.xml');
 		
-				
+		
 		if($hutsa == 1) {
 			$sqlgaldera="INSERT INTO Galderak(Eposta, Galdera, Erantzuna, Zailtasuna) VALUES ('$eposta', '$galdera', '$erantzuna', '$zailtasuna')";
 			$sqlkonexioa="INSERT INTO Konexioak(Eposta, K_Ordua) VALUES ('$eposta', '$ordua')";
@@ -40,12 +40,13 @@
 			$assesItem-> addAttribute('komplexutasuna', $zailtasuna);
 			$assesItem-> addAttribute('subject', 'Hutsik');
 		
-			$Itembody= -> addChild('itemBody');
-			$Itembody-> addChild('p', $erantzuna);
+			$Itembody= $assesItem-> addChild('itemBody');
+			$Itembody-> addChild('p', $galdera);
 			$cResponse= $assesItem ->addChild('correctResponse');
 			$Value= $cResponse-> addChild('value',$erantzuna);
 		
 			$xml->asXML('galderak.xml');
+			echo $galdera;
 			echo $xml->asXML();
 			
 			if (!mysql_query($sqlgaldera) || !mysql_query($sqlkonexioa))
