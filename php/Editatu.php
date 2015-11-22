@@ -18,30 +18,15 @@
 			header("location:../layout.html");
 		}
 	
-	$hutsa = 1;
-	if (isset($_POST['Galdera'])) {
-		if(empty($_POST['Galdera']))
-		{
-			$hutsa=0;
-		}
-		if(empty($_POST['Erantzuna']))
-		{
-			$hutsa=0;
-		}
-		if(empty($_POST['Zailtasuna']))
-		{
-			$hutsa=0;
-		}
 	
 		$eposta = $_SESSION['erabiltzaile'];
-		$galdera = $_POST['Galdera'];
-		$erantzuna = $_POST['Erantzuna'];
-		$zailtasuna = $_POST['Zailtasuna'];
+		$galdera = $_GET['Galdera'];
+		$erantzuna = $_GET['Erantzuna'];
+		$zailtasuna = $_GET['Zailtasuna'];
 		$ordua = date('Y-m-d H:i:s');
 		$ip = $_SERVER["REMOTE_ADDR"];
-		$ID = $_POST['ID'];
-		$ekintza = $_POST['aukera'];
-		echo "$ekintza";
+		$ID = $_GET['ID'];
+		$aukera = $_GET['Aukera'];
 		
 		
 		
@@ -54,10 +39,25 @@
 				echo "\t", $error->message;
 			}
 		}
-		if ($ekintza == "Gehitu"){
+		if ($aukera == "Gehitu"){
 			$mota = "Galdera txertatu";
+			$hutsa = 1;
+			if (isset($_GET['Galdera'])) {
+				if(empty($_GET['Galdera']))
+				{
+					$hutsa=0;
+				}
+				if(empty($_GET['Erantzuna']))
+				{
+					$hutsa=0;
+				}
+				if(empty($_GET['Zailtasuna']))
+				{
+					$hutsa=0;
+				}
+			
 			if($hutsa == 1) {
-				//$sqlgaldera="INSERT INTO Galderak(Eposta, Galdera, Erantzuna, Zailtasuna) VALUES ('$eposta', '$galdera', '$erantzuna', '$zailtasuna')";
+				$sqlgaldera="INSERT INTO Galderak(Eposta, Galdera, Erantzuna, Zailtasuna) VALUES ('$eposta', '$galdera', '$erantzuna', '$zailtasuna')";
 				$sqlkonexioa="INSERT INTO Konexioak(Eposta, K_Ordua) VALUES ('$eposta', '$ordua')";
 				
 				$assesItem = $xml->addchild('assesmentItem');
@@ -95,31 +95,34 @@
 			else {
 				echo "Kutxetako bat hutsik dago!";
 			}
+			}	
 		}
-		
-		if ($ekintza == "Eguneratu"){
+		if ($aukera == "Eguneratu"){
 			$mota = "Galdera eguneratu";
 			$hutsa=0;
-			if(empty($_POST['Galdera']))
+			if(empty($_GET['Galdera']))
 			{
 				$hutsa=1;
 			}
-			if(empty($_POST['Erantzuna']))
+			if(empty($_GET['Erantzuna']))
 			{
 				$hutsa=2;
 			}
 			
-			switch ($hutsa) {
-			case 0:
-				$sqlgaldera = "UPDATE Galderak(Galdera, Erantzuna, Zailtasuna) SET Galdera = $galdera , Erantzuna = $erantzuna, Zailtasuna = $Zailtasuna WHERE ID = $ID ";
-				break;
-			case 1:
-				$sqlgaldera = "UPDATE Galderak(Erantzuna, Zailtasuna) SET  Erantzuna = $erantzuna, Zailtasuna = $Zailtasuna WHERE ID = $ID ";
-				break;
-			case 2:
-				$sqlgaldera = "UPDATE Galderak(Zailtasuna) SET Zailtasuna = $Zailtasuna WHERE ID = $ID ";
-				break;
+			if ($hutsa == 0) {
+			
+				$sqlgaldera = "UPDATE Galderak SET Galdera = '$galdera' , Erantzuna = '$erantzuna',Zailtasuna = $zailtasuna  WHERE ID = $ID ";
+			}
+				
+			if ($hutsa == 1) {
+				$sqlgaldera = "UPDATE Galderak SET  Erantzuna = '$erantzuna', Zailtasuna = $zailtasuna WHERE ID = $ID ";	break;
+			}
+			if ($hutsa == 2) {
+				$sqlgaldera = "UPDATE Galderak SET Zailtasuna = $zailtasuna WHERE ID = $ID ";
+			}
+			echo "7";
 			$sqlkonexioa="INSERT INTO Konexioak(Eposta, K_Ordua) VALUES ('$eposta', '$ordua')";
+			
 			if (!mysql_query($sqlgaldera) || !mysql_query($sqlkonexioa))
 				{
 					die('Errorea: ' . mysql_error());
@@ -140,7 +143,7 @@
 				mysql_close();
 		}
 		
-		}
 		
-	}
+		
+	
 ?>

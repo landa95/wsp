@@ -37,3 +37,13 @@ setInterval(function(){
 	XMLHttpRequestObject.open("GET", '../php/ikusiGalderakEdit.php', true);
 	XMLHttpRequestObject.send();
 }
+
+function galderaEditatu() {
+	var galdera=document.getElementById('galdera').value;
+	var erantzuna=document.getElementById('erantzuna').value;
+	var zailtasuna=document.getElementById('zailtasuna').value;
+	var aukera=document.getElementById('aukera').value;
+	var ID=document.getElementById('ID').value;
+	XMLHttpRequestObject.open("GET",'../php/Editatu.php?Galdera='+galdera+"&Erantzuna="+erantzuna+"&Zailtasuna="+zailtasuna+"&Aukera="+aukera+"&ID="+ID, true);
+	XMLHttpRequestObject.send();
+}
