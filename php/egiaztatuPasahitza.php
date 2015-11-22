@@ -5,7 +5,7 @@
 	//Lokala
 	//$ns="http://wsjclarke001.hol.es/php/egiaztatuPasahitza.php?wsdl"; //name of the service
 	//Sarekoa
-	$ns="http://localhost:1234/wsjclarke001/lab7/php/egiaztatuPasahitza.php?wsdl";
+	$ns="http://localhost:1234/WebSistemak/WebSistemak/php/egiaztatuPasahitza.php?wsdl";
 	$server = new soap_server;
 	$server->configureWSDL('egipasahitza',$ns);
 	$server->configureWSDL('egiid',$ns);

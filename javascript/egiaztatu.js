@@ -12,7 +12,7 @@ function egiaztatu() {
 	}
 
 	var eposta = document.getElementById('eposta').value;
-	XMLHttpRequestObject.open("GET", '../lab7/php/soapBezEgiaztatuMatrikulaAJAX.php?Eposta='+eposta, true);
+	XMLHttpRequestObject.open("GET", '../php/soapBezEgiaztatuMatrikulaAJAX.php?Eposta='+eposta, true);
 	XMLHttpRequestObject.send();
 
 	XMLHttpRequestObject2 = new XMLHttpRequest();
@@ -25,7 +25,7 @@ function egiaztatu() {
 	}
 
 	var pasahitza = document.getElementById('pasahitza').value;
-	XMLHttpRequestObject2.open("GET", '../lab7/php/soapBezEgiaztatuPasahitzaAJAX.php?Pasahitza='+pasahitza, true);
+	XMLHttpRequestObject2.open("GET", '../php/soapBezEgiaztatuPasahitzaAJAX.php?Pasahitza='+pasahitza, true);
 	XMLHttpRequestObject2.send();
 
 	XMLHttpRequestObject3 = new XMLHttpRequest();
@@ -38,7 +38,7 @@ function egiaztatu() {
 	}
 	
 	var id = document.getElementById('id').value;
-	XMLHttpRequestObject3.open("GET", '../lab7/php/soapBezEgiaztatuIdAJAX.php?Id='+id, true);
+	XMLHttpRequestObject3.open("GET", '../php/soapBezEgiaztatuIdAJAX.php?Id='+id, true);
 	XMLHttpRequestObject3.send();
 	
 	if (document.getElementById('egoera').innerHTML != "Erabiltzailea erregistraturik dago.") {
@@ -71,7 +71,7 @@ XMLHttpRequestObject.onreadystatechange = function(){
 
 function egiaztatuMatrikula() {
 	var eposta = document.getElementById('eposta').value;
-	XMLHttpRequestObject.open("GET", '../lab7/php/soapBezEgiaztatuMatrikulaAJAX.php?Eposta='+eposta, true);
+	XMLHttpRequestObject.open("GET", '../php/soapBezEgiaztatuMatrikulaAJAX.php?Eposta='+eposta, true);
 	XMLHttpRequestObject.send();
 }
 
@@ -86,7 +86,7 @@ XMLHttpRequestObject2.onreadystatechange = function(){
 
 function egiaztatuPasahitza() {
 	var pasahitza = document.getElementById('pasahitza').value;
-	XMLHttpRequestObject2.open("GET", '../lab7/php/soapBezEgiaztatuPasahitzaAJAX.php?Pasahitza='+pasahitza, true);
+	XMLHttpRequestObject2.open("GET", '../php/soapBezEgiaztatuPasahitzaAJAX.php?Pasahitza='+pasahitza, true);
 	XMLHttpRequestObject2.send();
 }
 
@@ -101,6 +101,6 @@ XMLHttpRequestObject3.onreadystatechange = function(){
 
 function egiaztatuId() {
 	var id = document.getElementById('id').value;
-	XMLHttpRequestObject3.open("GET", '../lab7/php/soapBezEgiaztatuIdAJAX.php?Id='+id, true);
+	XMLHttpRequestObject3.open("GET", '../php/soapBezEgiaztatuIdAJAX.php?Id='+id, true);
 	XMLHttpRequestObject3.send();
 }

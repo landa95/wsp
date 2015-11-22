@@ -31,3 +31,9 @@ setInterval(function(){
 	XMLHttpRequestObject2.open("GET","GalderaKopurua.php", true);
 	XMLHttpRequestObject2.send();
  }, 5000);
+ 
+ 
+ function GalderakIkusi2() {
+	XMLHttpRequestObject.open("GET", '../php/ikusiGalderakEdit.php', true);
+	XMLHttpRequestObject.send();
+}

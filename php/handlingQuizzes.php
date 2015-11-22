@@ -8,6 +8,11 @@
 	// Konexioa lokala egiaztatu
 	mysql_select_db("quiz") or die(mysql_error());
 	session_start();
+	if (!isset($_SESSION['erabiltzaile'])){
+		header("location: ../login.php");
+		
+	}
+	
 	$hutsa = 1;
 	if (isset($_POST['Galdera'])) {
 		if(empty($_POST['Galdera']))
@@ -23,7 +28,7 @@
 			$hutsa=0;
 		}
 	
-		$eposta = $_SESSION['Eposta'];
+		$eposta = $_SESSION['erabiltzaile'];
 		$galdera = $_POST['Galdera'];
 		$erantzuna = $_POST['Erantzuna'];
 		$zailtasuna = $_POST['Zailtasuna'];
@@ -100,6 +105,7 @@
 		<script src="../javascript/handling.js"></script>
 	</head>
 	<body>
+	<h1>Galdera Gehitu</h1>
 		<form action="" method="post" enctype="multipart/form-data" id="login" name="login">
 			Galdera<br>
 			<input id="galdera" type="text" name="Galdera" width="100">

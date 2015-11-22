@@ -3,7 +3,7 @@ function ikusBalioak(){
 	var frm = document.getElementById("erregistro");
 	var iza = new RegExp('[A-Z]+[a-z]* {1}[A-Z]+[a-z]* {1}[A-Z]+[a-z]*');
 	var pas = new RegExp('.{6,}');
-	var epo = new RegExp('[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)');
+	var epo = new RegExp('[a-z]+[0-9]{3}@(\.e)hu(\.e)(s|us)');
 	var tel = new RegExp('[0-9]{9}');
 	//2garren opzioa:
 	//var iza = /[A-Z]+[a-z]* {1}[A-Z]+[a-z]* {1}[A-Z]+[a-z]*/;

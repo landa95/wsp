@@ -1,9 +1,11 @@
 <?php
+
+	session_start();
 	// Konexioa sortu
 	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
 	// Konexioa egiaztatu
 	//mysql_select_db("u275359965_quiz") or die(mysql_error());
-	// Konexioa lokala sortu
+	// Konexioa lokala sortu	
 	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
 	// Konexioa lokala egiaztatu
 	mysql_select_db("quiz") or die(mysql_error());
@@ -21,7 +23,7 @@
 	} else {
 		echo("Pasahitza formatua ez da zuzena.<br>");
 	}
-	if (!filter_var($email, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)/"))) === false) {
+	if (!filter_var($email, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@(\.e)hu(\.e)(s|us)/"))) === false) {
 		echo("$email email helbide zuzena da.<br>");
 	} else {
 		echo("$email ez da email helbide zuzena.<br>");
@@ -64,5 +66,6 @@
 	}
 	echo "Txertatze bat eginda.";
 	mysql_close();
-	echo "<a href='IkusiErabiltzaileak.php'> Erabiltzaileak ikusi </a>";
+	header("Location: ../layout.html");
+	//echo "<a href='IkusiErabiltzaileak.php'> Erabiltzaileak ikusi </a>";
 ?> 
