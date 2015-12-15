@@ -10,6 +10,7 @@
 	$zuzenabat=1;
 	$zuzenabi=1;
 	$hutsa=1;
+	$saiakera=3;
 	
 	if (isset($_POST['Eposta'])) {
 		if(empty($_POST['Eposta']))
@@ -33,12 +34,21 @@
 			$zuzenabat=0;
 		}
 
-		if($result[0]!=null){
+		if($result[0]!=null && $saiakera!=0){
 			session_start();
 			$_SESSION['Eposta'] = $_POST['Eposta'];
 			header("location:php/handlingQuizzes.php");
 		}else{
-			$zuzenabi=0;
+			if(isset($_COOKIE['login'])){
+				if($_COOKIE['login'] < 3){
+					$attempts = $_COOKIE['login'] + 1;
+					setcookie('login', $attempts, time()+60*10); //set the cookie for 10 minutes with the number of attempts stored
+				}else{
+					echo '10 minutuetan ezin izango duzu pasahitza sartu. Saiatu berriro beranduago.';
+				}
+			}else{
+				setcookie('login', 1, time()+60*10); //set the cookie for 10 minutes with the initial value of 1
+			}
 		}
 	}
 ?>
