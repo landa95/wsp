@@ -32,10 +32,9 @@ if (isset($_SESSION['erabiltzaile'])){
 						
 						$eposta = $_POST['Eposta'];
 						$pasahitza= "ilanda";
-						$hashpasahitza = hash('sha512','ilanda');
+						$hashpasahitza = hash('sha512',"$_POST[Pasahitza]");
 						$query = mysql_query("SELECT Eposta ,Pasahitza FROM Erabiltzaile
 						WHERE Eposta='$eposta' and pasahitza='$hashpasahitza'") or die(mysql_error());
-						echo "$hashpasahitza";
 						$result = mysql_fetch_array($query);
 						if (filter_var($eposta, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)/"))) === false) {
 							$zuzenabat=0;
@@ -58,13 +57,13 @@ if (isset($_SESSION['erabiltzaile'])){
 							}
 						}
 						
-						//if($_SESSION['erabiltzaile'] == "web@ehu.es"){
+						if($_SESSION['erabiltzaile'] == "web@ehu.es"){
 							
-							//header("location:php/reviewingQuizzes.php");
-						//}else{
-							//header("location:php/handlingQuizzes.php");
+							header("location:php/reviewingQuizzes.php");
+						}else{
+							header("location:php/handlingQuizzes.php");
 					
-						//}
+						}
 						
 	}
 					
