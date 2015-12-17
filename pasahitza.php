@@ -40,7 +40,8 @@
 		}else{
 			$zuzenabi = 0;
 		}
-		header("location:../layout.html");
+		
+		
 	}
 ?>
 <!DOCTYPE html> 

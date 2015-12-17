@@ -28,6 +28,7 @@
 		}
 		echo "Pasahitza berria: $berria";
 		mysql_close();
+		header("location:../layout.html");
 	}
 ?>
 <!DOCTYPE html> 
