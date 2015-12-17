@@ -30,23 +30,11 @@
 	</head>
 	<body>
 			 <div id = "anonim">
-			 <form method="post" enctype="multipart/form-data" id="nickname" name="quiz" action = "" >
-			 Nickname:<input id="nickname" type= "text" name="nickname" width="100">			
+			 <form method="post" enctype="multipart/form-data" id="nicknameform" name="quiz">
+			 Nickname:<input id="nickname" type= "text" name="nickname" placeholder="user" width="100">			
 			 <input id = "anonimo" type = "button" name= "anonimo"value = "OK" onClick="nickName()"></input>
 			 </form>
-			 </div><br><br><br>
-		
-		
-		<div id="Galdera" >		
-			<form method="post" enctype="multipart/form-data" id="quiz" name="quiz" >
-			<input id="erantzuna" type= "text" name="erantzuna" width="100">
-			<input id = "bidali" type = "button" value ="check" name ="bidali" onClick=" AJAX">
-			</form>
-			
-		</div>
-		<div id="galderakop" >
-			<p>Galdera kopurua</p>
-		</div>
+			 </div>
 		<br>
 	</body>
 </html>
