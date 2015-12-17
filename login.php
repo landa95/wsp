@@ -41,7 +41,7 @@ if (isset($_SESSION['erabiltzaile'])){
 		
 		if($result[0]!=null && $_COOKIE['login'] < 3){	
 			$_SESSION['erabiltzaile'] = $_POST['Eposta'];
-			if($_SESSION['erabiltzaile'] == "web@ehu.es"){
+			if($_SESSION['erabiltzaile'] == "web000@ehu.es"){
 				header("location:irakasle.html");
 			} else{
 				header("location:ikasle.html");

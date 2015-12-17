@@ -9,14 +9,12 @@
 	mysql_select_db("quiz") or die(mysql_error());
 	session_start();
 	if (!isset($_SESSION['erabiltzaile'])){
-		header("location: ../login.php");
-		
+		header("location: ../login.php");	
 	}
 	
 	if($_SESSION['erabiltzaile'] != "web000@ehu.es"){
-			
 			header("location:../layout.html");
-		}
+	}
 ?>
 
 <!DOCTYPE html>
