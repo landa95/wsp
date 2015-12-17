@@ -2,7 +2,7 @@
 	require_once('../lib/nusoap.php');
 	require_once('../lib/class.wsdlcache.php');
 	
-	$soapclient = new nusoap_client('http://localhost:1234/WebSistemak/WebSistemak/lana/php/egiaztatuPasahitza.php?wsdl', true);
+	$soapclient = new nusoap_client('http://wsrosaas.hol.es/webZerbitzuak/egiaztatuMatrikula.php?wsdl', true);
 	//$soapclient = new nusoap_client('http://sw14.hol.es/ServiciosWeb/comprobarmatricula.php?wsdl', false);
 	$server = new soap_server;
 	

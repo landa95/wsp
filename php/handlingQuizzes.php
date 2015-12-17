@@ -10,7 +10,6 @@
 	session_start();
 	if (!isset($_SESSION['erabiltzaile'])){
 		header("location: ../login.php");
-		
 	}
 	
 ?>
@@ -47,7 +46,7 @@
 			<br>
 			<input id="ikusi" name="Ikusi" type="button" value="Ikusi nire galderak" onclick="nireGalderakIkusi()"><br>
 			<!-- Lokala -->
-			<a href="../layout.html">Hasierako orria</a><br>
+			<a href="../ikasle.html">Hasierako orria</a><br>
 			<!-- Web-a -->
 			<!--<a href="../layout.html">Hasierako orria</a><br>-->
 		</form>
@@ -57,8 +56,5 @@
 		<div id="galderakop" style="background-color:#298ff5;">
 			<p>Galdera kopurua</p>
 		</div>
-		<br>
-		<br>
-		<a href="kodeazalpena.pdf">Kode azalpena</a><br>
 	</body>
 </html>

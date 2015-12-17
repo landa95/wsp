@@ -49,7 +49,7 @@
 	<body>
 		<form action="" method="post" enctype="multipart/form-data" id="berreskuratu" name="berreskuratu">
 			Idatzi pasahitz berria<br>
-			<input id="berria" type="text" name="Berria">
+			<input id="berria" type="password" name="Berria">
 			<br>
 			<input id="bidali" name="Bidali" type="submit" value="Bidali">
 			<br>
@@ -60,7 +60,7 @@
 			?>
 		</form>
 		<span>
-			<a href="../layout.html">Atzera</a><br>
+			<a href="../layout.html">Hasierako orria</a><br>
 		</span>	
 	</body>
 </html>
