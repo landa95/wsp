@@ -6,10 +6,14 @@
 	// Konexioa lokala sortu
 	
 	session_start();
+<<<<<<< HEAD
 	if (isset($_SESSION['erabiltzaile'])){
 		header("location:php/handlingQuizzes.php");
 		
 	}
+=======
+
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
 	
 	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
 	// Konexioa lokala egiaztatu
@@ -53,7 +57,11 @@
 			
 			header("location:php/reviewingQuizzes.php");
 		}else{
+<<<<<<< HEAD
 			header("location:php/reviewingQuizzes.php");
+=======
+			header("location:php/handlingQuizzes.php");
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
 
 			
 		}

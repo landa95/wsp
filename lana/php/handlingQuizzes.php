@@ -8,6 +8,7 @@
 	// Konexioa lokala egiaztatu
 	mysql_select_db("quiz") or die(mysql_error());
 	session_start();
+<<<<<<< HEAD
 	$hutsa = 1;
 	if (isset($_POST['Galdera'])) {
 		if(empty($_POST['Galdera']))
@@ -81,6 +82,13 @@
 			echo "Kutxetako bat hutsik dago!";
 		}
 	}
+=======
+	if (!isset($_SESSION['erabiltzaile'])){
+		header("location: ../login.php");
+		
+	}
+	
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
 ?>
 
 <!DOCTYPE html>
@@ -100,6 +108,10 @@
 		<script src="../javascript/handling.js"></script>
 	</head>
 	<body>
+<<<<<<< HEAD
+=======
+	<h1>Galdera Gehitu</h1>
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
 		<form action="" method="post" enctype="multipart/form-data" id="login" name="login">
 			Galdera<br>
 			<input id="galdera" type="text" name="Galdera" width="100">

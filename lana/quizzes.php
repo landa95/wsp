@@ -48,7 +48,11 @@
 		</table>
 		<span>
 			<!-- Lokala -->
+<<<<<<< HEAD
 			<a href="../lab7/layout.html">Hasierako orria</a><br>
+=======
+			<a href="../layout.html">Hasierako orria</a><br>
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
 			<!-- Web-a -->
 			<!--<a href="../layout.html">Hasierako orria</a><br>-->
 		</span>	

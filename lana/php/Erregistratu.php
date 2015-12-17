@@ -6,6 +6,10 @@
 	// Konexioa lokala sortu
 	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
 	// Konexioa lokala egiaztatu
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
 	mysql_select_db("quiz") or die(mysql_error());
 	$email = $_POST['Eposta'];
 	$pasa = $_POST['Pasahitza'];
