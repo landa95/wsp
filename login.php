@@ -19,52 +19,50 @@ if (isset($_SESSION['erabiltzaile'])){
 	
 	if(isset($_POST["Eposta"])){
 		
-						if(empty($_POST['Eposta']))
-						{
-							$hutsa=0;
+		if(empty($_POST['Eposta']))
+		{
+			$hutsa=0;
 
-						}
-						 
-						if(empty($_POST['Pasahitza']))
-						{
-							$hutsa=0;
-						}
-						
-						$eposta = $_POST['Eposta'];
-						$pasahitza= "ilanda";
-						$hashpasahitza = hash('sha512',"$_POST[Pasahitza]");
-						$query = mysql_query("SELECT Eposta ,Pasahitza FROM Erabiltzaile
-						WHERE Eposta='$eposta' and pasahitza='$hashpasahitza'") or die(mysql_error());
-						$result = mysql_fetch_array($query);
-						if (filter_var($eposta, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)/"))) === false) {
-							$zuzenabat=0;
-						}
-						
-						if($hashpasahitza=$result[1]){	
-							$_SESSION['erabiltzaile'] = $_POST['Eposta'];
-							echo "Session";
-	
-						}else{
-							if(isset($_COOKIE['login'])){
-								if($_COOKIE['login'] < 3){
-									$attempts = $_COOKIE['login'] + 1;
-									setcookie('login', $attempts, time()+60*10); //set the cookie for 10 minutes with the number of attempts stored
-								}else{
-									echo '10 minutuetan ezin izango duzu pasahitza sartu. Saiatu berriro beranduago.';
-								}
-							}else{
-								setcookie('login', 1, time()+60*10); //set the cookie for 10 minutes with the initial value of 1
-							}
-						}
-						
-						if($_SESSION['erabiltzaile'] == "web@ehu.es"){
-							
-							header("location:php/reviewingQuizzes.php");
-						}else{
-							header("location:php/handlingQuizzes.php");
-					
-						}
-						
+		}
+		 
+		if(empty($_POST['Pasahitza']))
+		{
+			$hutsa=0;
+		}
+		
+		$eposta = $_POST['Eposta'];
+		$hashpasahitza = hash('sha512',"$_POST[Pasahitza]");
+		$query = mysql_query("SELECT Eposta ,Pasahitza FROM Erabiltzaile
+		WHERE Eposta='$eposta' and pasahitza='$hashpasahitza'") or die(mysql_error());
+		$result = mysql_fetch_array($query);
+		if (filter_var($eposta, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)/"))) === false) {
+			$zuzenabat=0;
+		}
+		
+		if($result[0]!=null && $_COOKIE['login'] < 3){	
+			$_SESSION['erabiltzaile'] = $_POST['Eposta'];
+			if($_SESSION['erabiltzaile'] == "web@ehu.es"){
+				header("location:irakasle.html");
+			} else{
+				header("location:ikasle.html");
+			}
+		} else if ($result[0]!=null && $_COOKIE['login'] >= 3){
+			echo "Minutu 1ean ezin izango duzu pasahitza sartu. Saiatu berriro beranduago.";
+			echo "<script>setTimeout(\"location.href = 'layout.html';\",2000);</script>";
+		} else {
+			$zuzenabi=0;
+			if(isset($_COOKIE['login'])){
+				if($_COOKIE['login'] < 3){
+					$attempts = $_COOKIE['login'] + 1;
+					setcookie('login', $attempts, time()+60); //set the cookie for 1 minute with the number of attempts stored
+				}else{
+					echo "Minutu 1ean ezin izango duzu pasahitza sartu. Saiatu berriro beranduago.";
+					echo "<script>setTimeout(\"location.href = 'layout.html';\",2000);</script>";
+				}
+			}else{
+				setcookie('login', 1, time()+60); //set the cookie for 1 minute with the initial value of 1
+			}
+		}				
 	}
 					
 ?>

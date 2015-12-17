@@ -40,8 +40,11 @@
 		}else{
 			$zuzenabi = 0;
 		}
+<<<<<<< HEAD
 		
 		
+=======
+>>>>>>> cadcfed658fdfbcfb80917dcc8823fe9fcafb9e0
 	}
 ?>
 <!DOCTYPE html> 
