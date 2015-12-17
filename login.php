@@ -1,18 +1,21 @@
 <?php
-
-session_start();
-if (isset($_SESSION['erabiltzaile'])){
-	header("location:php/../layout.html");
-}
-	
 	// Konexioa sortu
-	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
-	// Konexioa egiaztatu
-	//mysql_select_db("u275359965_quiz") or die(mysql_error());
+	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
-	// Konexioa lokala egiaztatu
-	mysql_select_db("quiz") or die(mysql_error());
+	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	// Konexioa egiaztatu
+	if (mysqli_connect_errno())
+	{
+		echo "Errorea MYSQLera konektatzean: " . mysqli_connect_error();
+	}
+	session_start();
+	if (isset($_SESSION['erabiltzaile'])){
+		if($_SESSION['erabiltzaile'] != "web000@ehu.es"){
+			header("location:irakasle.html");
+		} else {
+			header("location:ikasle.html");
+		}
+	}
 	$zuzenabat=1;
 	$zuzenabi=1;
 	$hutsa=1;
@@ -32,9 +35,9 @@ if (isset($_SESSION['erabiltzaile'])){
 		
 		$eposta = $_POST['Eposta'];
 		$hashpasahitza = hash('sha512',"$_POST[Pasahitza]");
-		$query = mysql_query("SELECT Eposta ,Pasahitza FROM Erabiltzaile
-		WHERE Eposta='$eposta' and pasahitza='$hashpasahitza'") or die(mysql_error());
-		$result = mysql_fetch_array($query);
+		$query = mysqli_query($sql, "SELECT Eposta ,Pasahitza FROM Erabiltzaile
+		WHERE Eposta='$eposta' and pasahitza='$hashpasahitza'");
+		$result = mysqli_fetch_array($query);
 		if (filter_var($eposta, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)/"))) === false) {
 			$zuzenabat=0;
 		}
@@ -101,9 +104,6 @@ if (isset($_SESSION['erabiltzaile'])){
 				}
 			?>
 		</form>
-		<span>
-			<a href="pasahitza.php">Pasahitza ahaztu dut...</a><br>
-		</span>	
 		<span>
 			<a href="layout.html">Atzera</a><br>
 		</span>	

@@ -1,12 +1,13 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
-	// Konexioa egiaztatu
-	//mysql_select_db("u275359965_quiz") or die(mysql_error());
+	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
-	// Konexioa lokala egiaztatu
-	mysql_select_db("quiz") or die(mysql_error());
+	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	// Konexioa egiaztatu
+	if (mysqli_connect_errno())
+	{
+		echo "Errorea MYSQLera konektatzean: " . mysqli_connect_error();
+	}
 	session_start();
 	if (!isset($_SESSION['erabiltzaile'])){
 		header("location: ../login.php");	
@@ -55,7 +56,7 @@
 			<br>
 			<input id="ikusi" name="Ikusi" type="button" value="Galderak Ikusi" onclick="GalderakIkusi2()"><br>
 			<!-- Lokala -->
-			<a href="../layout.html">Hasierako orria</a><br>
+			<a href="../irakasle.html">Hasierako orria</a><br>
 			<!-- Web-a -->
 			<!--<a href="../layout.html">Hasierako orria</a><br>-->
 		</form>

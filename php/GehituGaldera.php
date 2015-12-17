@@ -1,12 +1,13 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
-	// Konexioa egiaztatu
-	//mysql_select_db("u275359965_quiz") or die(mysql_error());
+	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
-	// Konexioa lokala egiaztatu
-	mysql_select_db("quiz") or die(mysql_error());
+	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	// Konexioa egiaztatu
+	if (mysqli_connect_errno())
+	{
+		echo "Errorea MYSQLera konektatzean: " . mysqli_connect_error();
+	}
 	session_start();
 	$hutsa = 1;
 	if (isset($_GET['Galdera'])) {
@@ -55,27 +56,26 @@
 			$Value= $cResponse-> addChild('value',$erantzuna);
 		
 			$xml->asXML('../xml/galderak.xml');
-			//echo $xml->asXML();
 			
-			if (!mysql_query($sqlgaldera) || !mysql_query($sqlkonexioa))
+			if (!mysqli_query($sql, $sqlgaldera) || !mysqli_query($sql, $sqlkonexioa))
 			{
-				die('Errorea: ' . mysql_error());
+				echo('Errorea: ' . mysqli_error($sql));
 			}
 			
 			$query="SELECT MAX(K_ID) FROM `Konexioak`";
-			$do = mysql_query($query);
-			$fetch=mysql_fetch_assoc($do);
+			$do = mysqli_query($sql, $query);
+			$fetch=mysqli_fetch_assoc($do);
 			$k_id=$fetch['MAX(K_ID)'];
 			$ip = $_SERVER['REMOTE_ADDR'];
 			
 			$sqlekintza="INSERT INTO Ekintzak(K_ID, Eposta, E_Mota, E_Ordua, IP) VALUES ('$k_id', '$eposta', '$mota', '$ordua', '$ip')";
-			if (! $do || !mysql_query($sqlekintza))
+			if (!$do || !mysqli_query($sql, $sqlekintza))
 			{
-				die('Errorea: ' . mysql_error());
+				echo('Errorea: ' . mysqli_error($sql));
 			}
 			
 			echo "Txertatze bat eginda.";
-			mysql_close();
+			mysqli_close($sql);
 		}
 		else {
 			echo "Kutxetako bat hutsik dago!";

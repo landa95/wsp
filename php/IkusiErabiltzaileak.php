@@ -1,19 +1,27 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
-	// Konexioa egiaztatu
-	//mysql_select_db("u275359965_quiz") or die(mysql_error());
+	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
-	// Konexioa lokala egiaztatu
-	mysql_select_db("quiz") or die(mysql_error());
-	$sql="SELECT * FROM `Erabiltzaile`";
-	$records = mysql_query($sql);
-	if (! $records)
+	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	// Konexioa egiaztatu
+	if (mysqli_connect_errno())
 	{
-		die('Errorea: ' . mysql_error());
+		echo "Errorea MYSQLera konektatzean: " . mysqli_connect_error();
 	}
-	mysql_close();
+	session_start();
+	if (!isset($_SESSION['erabiltzaile'])){
+		header("location: ../login.php");	
+	}
+	if($_SESSION['erabiltzaile'] != "web000@ehu.es"){
+			header("location:../layout.html");
+	}
+	$query="SELECT * FROM `Erabiltzaile`";
+	$records = mysqli_query($sql, $query);
+	if (!$records)
+	{
+		echo('Errorea: ' . mysqli_error($sql));
+	}
+	mysqli_close($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +43,7 @@
 			<tr>
 				<th>Izena</th>
 				<th>E-posta</th>
-				<th>Pasahitza</th>
+				<!--<th>Pasahitza</th>-->
 				<th>Telefonoa</th>
 				<th>Espezialitatea</th>
 				<th>Interesak</th>
@@ -43,10 +51,10 @@
 			<tr>
 			
 			<?php
-				while($erabiltzaile=mysql_fetch_assoc($records)) {
+				while($erabiltzaile=mysqli_fetch_assoc($records)) {
 					echo "<td>".$erabiltzaile['Izena']."</td>";
 					echo "<td>".$erabiltzaile['Eposta']."</td>";
-					echo "<td>".$erabiltzaile['Pasahitza']."</td>";
+					//echo "<td>".$erabiltzaile['Pasahitza']."</td>";
 					echo "<td>".$erabiltzaile['Telefonoa']."</td>";
 					echo "<td>".$erabiltzaile['Espezialitatea']."</td>";
 					echo "<td>".$erabiltzaile['Interesak']."</td>";
@@ -63,10 +71,7 @@
 			
 		</table>
 		<span>
-			<!-- Lokala -->
-			<!--<a href="../lab5/layout.html">Hasierako orria</a><br>-->
-			<!-- Web-a -->
-			<a href="../layout.html">Hasierako orria</a><br>
+			<a href="../irakasle.html">Hasierako orria</a><br>
 		</span>	
 	</body>
 </html> 
