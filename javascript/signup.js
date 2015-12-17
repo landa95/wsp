@@ -3,7 +3,7 @@ function ikusBalioak(){
 	var frm = document.getElementById("erregistro");
 	var iza = new RegExp('[A-Z]+[a-z]* {1}[A-Z]+[a-z]* {1}[A-Z]+[a-z]*');
 	var pas = new RegExp('.{6,}');
-	var epo = new RegExp('[a-z]+[0-9]{3}@(\.e)hu(\.e)(s|us)');
+	var epo = new RegExp('[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)');
 	var tel = new RegExp('[0-9]{9}');
 	//2garren opzioa:
 	//var iza = /[A-Z]+[a-z]* {1}[A-Z]+[a-z]* {1}[A-Z]+[a-z]*/;
@@ -56,6 +56,20 @@ function ikusBalioak(){
 			boo = false;
 		}
 	}
+	
+	XMLHttpRequestObject = new XMLHttpRequest();
+	XMLHttpRequestObject.onreadystatechange = function(){
+		if (XMLHttpRequestObject.readyState==4)
+		{
+			var obj = document.getElementById('egoera');
+			obj.innerHTML = XMLHttpRequestObject.responseText;
+		}
+	}
+
+	var eposta = document.getElementById('eposta').value;
+	XMLHttpRequestObject.open("GET", '../php/soapBezEgiaztatuMatrikulaAJAX.php?Eposta='+eposta, true);
+	XMLHttpRequestObject.send();
+	
 	XMLHttpRequestObject2 = new XMLHttpRequest();
 	XMLHttpRequestObject2.onreadystatechange = function(){
 		if (XMLHttpRequestObject2.readyState==4)
@@ -66,22 +80,13 @@ function ikusBalioak(){
 	}
 
 	var pasahitza = document.getElementById('pasahitza').value;
-	XMLHttpRequestObject2.open("GET", '../lab7/php/soapBezEgiaztatuPasahitzaAJAX.php?Pasahitza='+pasahitza, true);
+	XMLHttpRequestObject2.open("GET", '../php/soapBezEgiaztatuPasahitzaAJAX.php?Pasahitza='+pasahitza, true);
 	XMLHttpRequestObject2.send();
-
-	XMLHttpRequestObject3 = new XMLHttpRequest();
-	XMLHttpRequestObject3.onreadystatechange = function(){
-		if (XMLHttpRequestObject3.readyState==4)
-		{
-			var obj = document.getElementById('pid');
-			obj.innerHTML = XMLHttpRequestObject3.responseText;
-		}
+	
+	if (document.getElementById('egoera').innerHTML != "Erabiltzailea erregistraturik dago.") {
+		sAux += "Eposta hau ez dago Web Sistemak-en erregistratua.\n";
+		boo = false;
 	}
-	
-	var id = document.getElementById('id').value;
-	XMLHttpRequestObject3.open("GET", '../lab7/php/soapBezEgiaztatuIdAJAX.php?Id='+id, true);
-	XMLHttpRequestObject3.send();
-	
 	if (document.getElementById('pegoera').innerHTML != "Pasahitza egokia da.") {
 		sAux += "Pasahitza ez da egokia, beste bat erabili.\n";
 		boo = false;
@@ -100,4 +105,34 @@ function ikusBalioak(){
 	}
 	alert(sAux);
 	return boo;
+}
+
+XMLHttpRequestObject = new XMLHttpRequest();
+XMLHttpRequestObject.onreadystatechange = function(){
+	if (XMLHttpRequestObject.readyState==4)
+	{
+		var obj = document.getElementById('egoera');
+		obj.innerHTML = XMLHttpRequestObject.responseText;
+	}
+}
+
+function egiaztatuMatrikula() {
+	var eposta = document.getElementById('eposta').value;
+	XMLHttpRequestObject.open("GET", '../lana/php/soapBezEgiaztatuMatrikulaAJAX.php?Eposta='+eposta, true);
+	XMLHttpRequestObject.send();
+}
+
+XMLHttpRequestObject2 = new XMLHttpRequest();
+XMLHttpRequestObject2.onreadystatechange = function(){
+	if (XMLHttpRequestObject2.readyState==4)
+	{
+		var obj = document.getElementById('pegoera');
+		obj.innerHTML = XMLHttpRequestObject2.responseText;
+	}
+}
+
+function egiaztatuPasahitza() {
+	var pasahitza = document.getElementById('pasahitza').value;
+	XMLHttpRequestObject2.open("GET", '../lana/php/soapBezEgiaztatuPasahitzaAJAX.php?Pasahitza='+pasahitza, true);
+	XMLHttpRequestObject2.send();
 }

@@ -7,27 +7,40 @@
 	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
 	// Konexioa lokala egiaztatu
 	mysql_select_db("quiz") or die(mysql_error());
-	session_start();
+	$zuzenabat=1;
+	$zuzenabi=1;
 	$hutsa=1;
 	
-	if (isset($_POST['Berria'])) {
-		if(empty($_POST['Berria']))
+	if (isset($_POST['Eposta'])) {
+		if(empty($_POST['Eposta']))
+		{
+			$hutsa=0;
+		}
+		 
+		if(empty($_POST['Erantzuna']))
 		{
 			$hutsa=0;
 		}
 		
-		$eposta = $_SESSION['Eposta'];
-		$berria = $_POST['Berria'];
-		$hashberria = hash('sha512', '$_POST[Berria]');
+		$eposta = $_POST['Eposta'];
+		$erantzuna = $_POST['Erantzuna'];
 		
-		$sql = "UPDATE Erabiltzaile SET Pasahitza='$hashberria' WHERE Eposta='$eposta'";
+		$query = mysql_query("SELECT Eposta, Erantzuna FROM Erabiltzaile
+		WHERE Eposta='$eposta' and Erantzuna='$erantzuna'") or die(mysql_error());
 
-		if (!mysql_query($sql))
-		{
-			die('Errorea: ' . mysql_error());
+		$result = mysql_fetch_array($query);
+		if (filter_var($eposta, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)/"))) === false) {
+			$zuzenabat=0;
 		}
-		echo "Pasahitza berria: $berria";
-		mysql_close();
+
+		if($result[0]!=null){
+			session_start();
+			$_SESSION['Eposta'] = $_POST['Eposta'];
+			header("location:php/berreskuratu.php");
+		}else{
+			$zuzenabi = 0;
+		}
+		header("location:../layout.html");
 	}
 ?>
 <!DOCTYPE html> 
@@ -48,19 +61,25 @@
 	</head>
 	<body>
 		<form action="" method="post" enctype="multipart/form-data" id="berreskuratu" name="berreskuratu">
-			Idatzi pasahitz berria<br>
-			<input id="berria" type="text" name="Berria">
+			Eposta<br>
+			<input id="eposta" type="email" name="Eposta">
+			<br>
+			Zein da zure animalirik gustokoena?<br>
+			<input id="erantzuna" type="text" name="Erantzuna">
 			<br>
 			<input id="bidali" name="Bidali" type="submit" value="Bidali">
 			<br>
 			<?php
 				if ($hutsa==0) {
-					echo "Pasahitza ezin du hutsa izan!";
+					echo "Eposta edo erantzuna hutsik dago!";
+				} 
+				else if ($zuzenabat==0 || $zuzenabi==0) {
+					echo "Eposta edo erantzuna ez da zuzena!";
 				}
 			?>
 		</form>
 		<span>
-			<a href="../layout.html">Atzera</a><br>
+			<a href="layout.html">Atzera</a><br>
 		</span>	
 	</body>
 </html>
