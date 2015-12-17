@@ -1,35 +1,68 @@
 <?php
+<<<<<<< HEAD
+=======
 
 session_start();
 if (isset($_SESSION['erabiltzaile'])){
 	header("location:php/../layout.html");
 }
 	
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
 	// Konexioa sortu
 	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
 	// Konexioa egiaztatu
 	//mysql_select_db("u275359965_quiz") or die(mysql_error());
 	// Konexioa lokala sortu
-<<<<<<< HEAD
-=======
-	
-	session_start();
-<<<<<<< HEAD
-	if (isset($_SESSION['erabiltzaile'])){
-		header("location:php/handlingQuizzes.php");
-		
-	}
-=======
-
->>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
-	
->>>>>>> a13ae06ca324908a5c99995aeb47d2d7428d6bcf
 	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
 	// Konexioa lokala egiaztatu
 	mysql_select_db("quiz") or die(mysql_error());
 	$zuzenabat=1;
 	$zuzenabi=1;
 	$hutsa=1;
+<<<<<<< HEAD
+	$saiakera=3;
+	
+	if (isset($_POST['Eposta'])) {
+		if(empty($_POST['Eposta']))
+		{
+			$hutsa=0;
+		}
+		 
+		if(empty($_POST['Pasahitza']))
+		{
+			$hutsa=0;
+		}
+		
+		$eposta = $_POST['Eposta'];
+		$hashpasahitza = hash('sha512', '$_POST[Pasahitza]');
+		
+		$query = mysql_query("SELECT Eposta, Pasahitza FROM Erabiltzaile
+		WHERE Eposta='$eposta' and pasahitza='$hashpasahitza'") or die(mysql_error());
+
+		$result = mysql_fetch_array($query);
+		if (filter_var($eposta, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]+[0-9]{3}@ikasle(\.e)hu(\.e)(s|us)/"))) === false) {
+			$zuzenabat=0;
+		}
+
+		if($result[0]!=null && $saiakera!=0){
+			session_start();
+			$_SESSION['Eposta'] = $_POST['Eposta'];
+			header("location:php/handlingQuizzes.php");
+		}else{
+			if(isset($_COOKIE['login'])){
+				if($_COOKIE['login'] < 3){
+					$attempts = $_COOKIE['login'] + 1;
+					setcookie('login', $attempts, time()+60*10); //set the cookie for 10 minutes with the number of attempts stored
+				}else{
+					echo '10 minutuetan ezin izango duzu pasahitza sartu. Saiatu berriro beranduago.';
+				}
+			}else{
+				setcookie('login', 1, time()+60*10); //set the cookie for 10 minutes with the initial value of 1
+			}
+		}
+	}
+?>
+=======
 	
 	if(isset($_POST["Eposta"])){
 		
@@ -37,7 +70,6 @@ if (isset($_SESSION['erabiltzaile'])){
 						{
 							$hutsa=0;
 
-<<<<<<< HEAD
 						}
 						 
 						if(empty($_POST['Pasahitza']))
@@ -80,33 +112,11 @@ if (isset($_SESSION['erabiltzaile'])){
 					
 						}
 						
-=======
-		if($result[0]!=null){
-			
-			$ordua = date('H:i');
-			$sql1="INSERT INTO konexioak (eposta, ordua) VALUES ('$username','$ordua')" or die(mysql_error()) ;			
-			$_SESSION['erabiltzaile'] = $_POST['Eposta'];
-		}else{
-			$zuzenabi=0;
-		}
-		if($_SESSION['erabiltzaile'] == "web@ehu.es"){
-			
-			header("location:php/reviewingQuizzes.php");
-		}else{
-<<<<<<< HEAD
-			header("location:php/reviewingQuizzes.php");
-=======
-			header("location:php/handlingQuizzes.php");
->>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
-
-			
-		}
-		
->>>>>>> a13ae06ca324908a5c99995aeb47d2d7428d6bcf
 	}
 					
 ?>
 
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
 <!DOCTYPE html> 
 <html>
 	<head>
@@ -125,12 +135,21 @@ if (isset($_SESSION['erabiltzaile'])){
 	<body>
 		<form action="" method="post" enctype="multipart/form-data" id="login" name="login">
 			Eposta elektronikoa<br>
+<<<<<<< HEAD
+			<input id="eposta" type="email" name="Eposta">
+			<br>
+			Pasahitza<br>
+			<input id="pasahitza" type="password" name="Pasahitza">
+			<br>
+			<input id="bidali" name="Bidali" type="submit" value="Bidali">
+=======
 			<input id="Eposta" type="email" name="Eposta">
 			<br>
 			Pasahitza<br>
 			<input id="Pasahitza" type="password" name="Pasahitza">
 			<br>
 			<input id="bidali" name="bidali" type="submit" value="Bidali">
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
 			<br>
 			<?php
 				if ($hutsa==0) {
@@ -148,4 +167,8 @@ if (isset($_SESSION['erabiltzaile'])){
 			<a href="layout.html">Atzera</a><br>
 		</span>	
 	</body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8

@@ -1,5 +1,9 @@
 <?php
 	// Konexioa sortu
+<<<<<<< HEAD
+	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
+=======
+<<<<<<< HEAD
 	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
 	// Konexioa egiaztatu
 	//mysql_select_db("u275359965_quiz") or die(mysql_error());
@@ -7,6 +11,20 @@
 	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
 	// Konexioa lokala egiaztatu
 	mysql_select_db("quiz") or die(mysql_error());
+=======
+	$sql = mysql_connect('mysql.hostinger.es', 'u609685926_landa', 'quiz00') or die(mysql_error());
+>>>>>>> a13ae06ca324908a5c99995aeb47d2d7428d6bcf
+	// Konexioa egiaztatu
+	//mysql_select_db("u275359965_quiz") or die(mysql_error());
+	// Konexioa lokala sortu
+	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
+	// Konexioa lokala egiaztatu
+<<<<<<< HEAD
+	mysql_select_db("quiz") or die(mysql_error());
+=======
+	//mysql_select_db("quiz") or die(mysql_error());
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
+>>>>>>> a13ae06ca324908a5c99995aeb47d2d7428d6bcf
 	session_start();
 	if (!isset($_SESSION['erabiltzaile'])){
 		header("location: ../login.php");
@@ -141,6 +159,14 @@
 				
 				echo "Eguneraketa eginda!.";
 				mysql_close();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+				
+				
+>>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
+>>>>>>> a13ae06ca324908a5c99995aeb47d2d7428d6bcf
 		}
 		
 		
