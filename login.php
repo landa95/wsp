@@ -10,20 +10,6 @@ if (isset($_SESSION['erabiltzaile'])){
 	// Konexioa egiaztatu
 	//mysql_select_db("u275359965_quiz") or die(mysql_error());
 	// Konexioa lokala sortu
-<<<<<<< HEAD
-=======
-	
-	session_start();
-<<<<<<< HEAD
-	if (isset($_SESSION['erabiltzaile'])){
-		header("location:php/handlingQuizzes.php");
-		
-	}
-=======
-
->>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
-	
->>>>>>> a13ae06ca324908a5c99995aeb47d2d7428d6bcf
 	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
 	// Konexioa lokala egiaztatu
 	mysql_select_db("quiz") or die(mysql_error());
@@ -37,7 +23,6 @@ if (isset($_SESSION['erabiltzaile'])){
 						{
 							$hutsa=0;
 
-<<<<<<< HEAD
 						}
 						 
 						if(empty($_POST['Pasahitza']))
@@ -80,29 +65,6 @@ if (isset($_SESSION['erabiltzaile'])){
 					
 						}
 						
-=======
-		if($result[0]!=null){
-			
-			$ordua = date('H:i');
-			$sql1="INSERT INTO konexioak (eposta, ordua) VALUES ('$username','$ordua')" or die(mysql_error()) ;			
-			$_SESSION['erabiltzaile'] = $_POST['Eposta'];
-		}else{
-			$zuzenabi=0;
-		}
-		if($_SESSION['erabiltzaile'] == "web@ehu.es"){
-			
-			header("location:php/reviewingQuizzes.php");
-		}else{
-<<<<<<< HEAD
-			header("location:php/reviewingQuizzes.php");
-=======
-			header("location:php/handlingQuizzes.php");
->>>>>>> 197320168fe9f7ee05991c7cfc6c615681d2a5d8
-
-			
-		}
-		
->>>>>>> a13ae06ca324908a5c99995aeb47d2d7428d6bcf
 	}
 					
 ?>
