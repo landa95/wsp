@@ -35,7 +35,8 @@
 	} else {
 		echo("$tele telefonoa ez da zuzena.<br>");
 	}
-	$hashpasahitza = hash('sha512', '$_POST[Pasahitza]');
+	
+	$hashpasahitza = hash('sha512',"$_POST[Pasahitza]");
 	$target_dir = "uploads/";
 	$target_file = $target_dir . basename($_FILES["Argazkia"]["name"]);
 	$uploadOk = 1;
