@@ -8,12 +8,7 @@
 	// Konexioa lokala egiaztatu
 	mysql_select_db("quiz") or die(mysql_error());
 	session_start();
-	if (!isset($_SESSION['erabiltzaile'])){
-		header("location: ../login.php");
-		
-	}
-	
-	$query = 
+
 	
 ?>
 
@@ -31,24 +26,25 @@
 			   type='text/css' 
 			   media='only screen and (max-width: 480px)'
 			   href='stylesPWS/smartphone.css'>
-		<script src="../javascript/handling.js"></script>
+		<script src="javascript/galderak.js"></script>
 	</head>
 	<body>
-			
-			<form method="post" enctype="multipart/form-data" id="nickname" name="quiz" action = "" >
-			Nickname:<input id="nickname" type= "text" name="nickname" width="100">			
-			<input id = "anonimo" type = "button" name= "anonimo" action="galderakErakutsi()"></input>
-			</form>
+			 <div id = "anonim">
+			 <form method="post" enctype="multipart/form-data" id="nickname" name="quiz" action = "" >
+			 Nickname:<input id="nickname" type= "text" name="nickname" width="100">			
+			 <input id = "anonimo" type = "button" name= "anonimo"value = "OK" onClick="nickName()"></input>
+			 </form>
+			 </div><br><br><br>
 		
 		
-		<div id="Galdera" style="background-color:#99FF66;">		
+		<div id="Galdera" >		
 			<form method="post" enctype="multipart/form-data" id="quiz" name="quiz" >
 			<input id="erantzuna" type= "text" name="erantzuna" width="100">
-			<input id = "bidali" type = "button" name ="bidali" onClick=" AJAX">
+			<input id = "bidali" type = "button" value ="check" name ="bidali" onClick=" AJAX">
 			</form>
 			
 		</div>
-		<div id="galderakop" style="background-color:#298ff5;">
+		<div id="galderakop" >
 			<p>Galdera kopurua</p>
 		</div>
 		<br>
