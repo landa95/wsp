@@ -19,14 +19,15 @@ obj.innerHTML = XMLHttpRequestObject2.responseText;}
 }
 
 function emaitza(){
-	alert("sdfsd");
-	var saiakera= "pepa";	
-	var ondo = "Oker";
-	if(zuzena == saiakera){
-		ondo= "Zuzen";
+	var saiakera= document.getElementById('erantzuna').value;
+	var erantzuna= document.getElementById('emaitza').value;
+	alert(saiakera);
+	alert(erantzuna);
+	
+	var ondo = "false";
+	if(erantzuna == saiakera){
+		alert("Zuzen");
 	}else{
-		ondo = "Zuzen";
+		alert("OKER");
 	}	
-	XMLHttpRequestObject.open("GET", 'php/emaitza.php?ondo='+ondo, true);
-	XMLHttpRequestObject.send();
 }
