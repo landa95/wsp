@@ -23,7 +23,7 @@
 		
 		$query = "UPDATE Erabiltzaile SET Pasahitza='$hashberria' WHERE Eposta='$eposta'";
 
-		if (!mysql_query($sql, $query))
+		if (!mysqli_query($sql, $query))
 		{
 			echo('Errorea: ' . mysqli_error($sql));
 		}	 

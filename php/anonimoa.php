@@ -1,34 +1,31 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
-	// Konexioa egiaztatu
-	//mysql_select_db("u275359965_quiz") or die(mysql_error());
+	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	
-	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
-	// Konexioa lokala egiaztatu
-	mysql_select_db("quiz") or die(mysql_error());
+	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	// Konexioa egiaztatu
+	if (mysqli_connect_errno())
+	{
+		echo "Errorea MYSQLera konektatzean: " . mysqli_connect_error();
+	}
 	
 	session_start();
 	
 	$nickname= $_GET['nickname'];
 	
 	
-	echo '<div id = "anonim">
-			 <form method="post" enctype="multipart/form-data" id="nicknameform" name="quiz">
+	echo '<form method="post" enctype="multipart/form-data" id="nicknameform" name="quiz">
 			 Nickname:<input id="nickname" type= "text" placehoolder = "user" name="nickname" width="100">			
 			 <input id = "anonimo" type = "button" name= "anonimo"value = "OK" onClick="nickName()"></input>
 			 </form>';
 	echo "Erabiltzailea: ".$nickname;
-	echo'<div id = "anonim">';	
 	
-	$sql="SELECT Galdera, Erantzuna, Zailtasuna FROM galderak";
-	$records = mysql_query($sql);
-	if (! $records)
+	$query= mysqli_query($sql, "SELECT Galdera, Erantzuna, Zailtasuna FROM galderak");
+	if(!$query)
 	{
-		die('Errorea: ' . mysql_error());
+		echo('Errorea: ' . mysqli_error($sql));
 	}
-	mysql_close();
+	mysqli_close($sql);
 	
 	?>
 	<!DOCTYPE html>
@@ -57,17 +54,17 @@
 			<tr>
 			
 			<?php
-				while($galderak=mysql_fetch_assoc($records)) {
-					echo "<td>".$galderak['Galdera']."</td>";
+				$id = 1;
+				while($galderak=mysqli_fetch_assoc($query)) {
+					echo '<form method="post" enctype="multipart/form-data" id="quiz" name="quiz">';
+					echo '<td><p id="galdera'.$id.'">'.$galderak['Galdera']."</p></td>";
 					echo "<td>".$galderak['Zailtasuna']."</td>";
 					$erantzuna= $galderak['Erantzuna'];			
-					echo '<div id = "zuzen">';
-					echo '<td><form method="post" enctype="multipart/form-data" id="quiz" name="quiz">';
-					echo '<input id="erantzuna" type= "text" name="erantzuna" width="100"></td>';
-					echo '<td><input id = "bidali" type = "button" value ="check" name ="bidali" onClick= "emaitza()">
-						  </form></td>';  
-					echo '</div>';	  
+					echo '<td>';
+					echo '<input id="erantzuna'.$id.'" type= "text" name="erantzuna" width="100"></td>';
+					echo '<td><div id = "zuzen"><input id = "bidali" type = "button" value ="check" name ="bidali" onClick= "emaitza('.$id.')"></div></form></td>';  
 					echo "</tr>";
+					++$id;
 				}
 			?>
 			

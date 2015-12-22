@@ -18,16 +18,12 @@ if (XMLHttpRequestObject2.readyState==4)
 obj.innerHTML = XMLHttpRequestObject2.responseText;}
 }
 
-function emaitza(){
-	var saiakera= document.getElementById('erantzuna').value;
-	var erantzuna= document.getElementById('emaitza').value;
+function emaitza(id){
+	var saiakera= document.getElementById('erantzuna'+id).value;
 	alert(saiakera);
-	alert(erantzuna);
-	
-	var ondo = "false";
-	if(erantzuna == saiakera){
-		alert("Zuzen");
-	}else{
-		alert("OKER");
-	}	
+	var galdera = document.getElementById('galdera'+id).innerHTML;
+	alert(galdera);
+	XMLHttpRequestObject2.open("GET", 'php/erantzunzuzen.php?saiakera='+saiakera+'&galdera='+galdera, true);
+	alert("Iepa!");
+	XMLHttpRequestObject2.send();
 }
