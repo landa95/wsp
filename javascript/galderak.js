@@ -17,14 +17,11 @@ function emaitza(id){
 	XMLHttpRequestObject2 = new XMLHttpRequest();
 	XMLHttpRequestObject2.onreadystatechange = function(){
 	if (XMLHttpRequestObject2.readyState==4)
-	{var obj = document.getElementById('zuzen');
+	{var obj = document.getElementById('zuzen'+id);
 	obj.innerHTML = XMLHttpRequestObject2.responseText;}
 	}
-	alert(id);
 	var saiakera= document.getElementById('erantzuna'+id).value;
-	alert(saiakera);
 	var galdera = document.getElementById('galdera'+id).innerHTML;
-	alert(galdera);
 	XMLHttpRequestObject2.open("GET", 'php/erantzunzuzen.php?saiakera='+saiakera+'&galdera='+galdera, true);
 	XMLHttpRequestObject2.send();
 }

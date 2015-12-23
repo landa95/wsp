@@ -1,8 +1,8 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
+	$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	//$sql = mysqli_connect('localhost', 'root', '', 'quiz');
 	// Konexioa egiaztatu
 	if (mysqli_connect_errno())
 	{
@@ -11,9 +11,9 @@
 	session_start();
 	if (isset($_SESSION['erabiltzaile'])){
 		if($_SESSION['erabiltzaile'] != "web000@ehu.es"){
-			header("location:irakasle.html");
-		} else {
 			header("location:ikasle.html");
+		} else {
+			header("location:irakasle.html");
 		}
 	}
 	$zuzenabat=1;

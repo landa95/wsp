@@ -1,22 +1,20 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
-	// Konexioa egiaztatu
-	//mysql_select_db("u275359965_quiz") or die(mysql_error());
+	$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
-	// Konexioa lokala egiaztatu
-	mysql_select_db("quiz") or die(mysql_error());
+	//$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	// Konexioa egiaztatu
+	if (mysqli_connect_errno())
 	$mota = "Galderak ikusi";
 	$ordua = date('Y-m-d H:i:s');
 	$ip = $_SERVER["REMOTE_ADDR"];
-	$sqlekintza="INSERT INTO Ekintzak(E_Mota, E_Ordua, IP) VALUES ('$mota', '$ordua', '$ip')";
-	if (!mysql_query($sqlekintza))
+	$query="INSERT INTO Ekintzak(E_Mota, E_Ordua, IP) VALUES ('$mota', '$ordua', '$ip')";
+	if (!mysqli_query($sql, $query))
 	{
-		die('Errorea: ' . mysql_error());
+		echo('Errorea: ' . mysqli_error($sql));
 	}
 	
 	header("location:../quizzes.php");
-	mysql_close();
+	mysqli_close();
 ?>
 

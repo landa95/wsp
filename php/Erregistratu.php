@@ -1,13 +1,13 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysql_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot') or die(mysql_error());
-	// Konexioa egiaztatu
-	//mysql_select_db("u275359965_quiz") or die(mysql_error());
+	$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysql_connect('localhost', 'root', '') or die(mysql_error());
-	// Konexioa lokala egiaztatu
-	
-	mysql_select_db("quiz") or die(mysql_error());
+	//$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	// Konexioa egiaztatu
+	if (mysqli_connect_errno())
+	{
+		echo "Errorea MYSQLera konektatzean: " . mysqli_connect_error();
+	}
 	$email = $_POST['Eposta'];
 	$pasa = $_POST['Pasahitza'];
 	$tele = $_POST['Telefonoa'];
@@ -54,18 +54,18 @@
 		if($check !== false) {
 			echo "Igotako argazkia - " . $check["mime"] . ".";
 			$uploadOk = 1;
-			$sql="INSERT INTO Erabiltzaile(Izena, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesak, Argazkia, Erantzuna) VALUES ('$_POST[Izenabizenak]', '$_POST[Eposta]', '$hashpasahitza', '$_POST[Telefonoa]', '$_POST[Espezialitatea]', '$_POST[Interesak]', '$edukia', '$_POST[Erantzuna]')";
+			$query="INSERT INTO Erabiltzaile(Izena, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesak, Argazkia, Erantzuna) VALUES ('$_POST[Izenabizenak]', '$_POST[Eposta]', '$hashpasahitza', '$_POST[Telefonoa]', '$_POST[Espezialitatea]', '$_POST[Interesak]', '$edukia', '$_POST[Erantzuna]')";
 		} else {
 			echo "Ez da argazkirik igo.<br>";
 			$uploadOk = 0;
-			$sql="INSERT INTO Erabiltzaile(Izena, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesak, Erantzuna) VALUES ('$_POST[Izenabizenak]', '$_POST[Eposta]', '$hashpasahitza', '$_POST[Telefonoa]', '$_POST[Espezialitatea]', '$_POST[Interesak]', '$_POST[Erantzuna]')";
+			$query="INSERT INTO Erabiltzaile(Izena, Eposta, Pasahitza, Telefonoa, Espezialitatea, Interesak, Erantzuna) VALUES ('$_POST[Izenabizenak]', '$_POST[Eposta]', '$hashpasahitza', '$_POST[Telefonoa]', '$_POST[Espezialitatea]', '$_POST[Interesak]', '$_POST[Erantzuna]')";
 		}
 	}	
-	if (!mysql_query($sql))
+	if (!mysqli_query($sql, $query))
 	{
-		die('Errorea: ' . mysql_error());
+		echo('Errorea: ' . mysqli_error($sql));
 	}
 	echo "Txertatze bat eginda.";
-	mysql_close();
-	echo "<a href='IkusiErabiltzaileak.php'>Erabiltzaileak ikusi</a>";
+	mysqli_close($sql);
+	echo '<br><a href="../layout.html">Hasierako orrira</a>';
 ?> 

@@ -1,8 +1,8 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
+	$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	//$sql = mysqli_connect('localhost', 'root', '', 'quiz');
 	// Konexioa egiaztatu
 	if (mysqli_connect_errno())
 	{
@@ -115,7 +115,6 @@
 		if ($hutsa == 2) {
 			$sqlgaldera = "UPDATE Galderak SET Zailtasuna = $zailtasuna WHERE ID = $ID ";
 		}
-		echo "7";
 		$sqlkonexioa="INSERT INTO Konexioak(Eposta, K_Ordua) VALUES ('$eposta', '$ordua')";
 		
 		if (!mysqli_query($sql, $sqlgaldera) || !mysqli_query($sql, $sqlkonexioa))

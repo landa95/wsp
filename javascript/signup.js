@@ -118,7 +118,7 @@ XMLHttpRequestObject.onreadystatechange = function(){
 
 function egiaztatuMatrikula() {
 	var eposta = document.getElementById('eposta').value;
-	XMLHttpRequestObject.open("GET", '../lana/php/soapBezEgiaztatuMatrikulaAJAX.php?Eposta='+eposta, true);
+	XMLHttpRequestObject.open("GET", '../azkenlana/php/soapBezEgiaztatuMatrikulaAJAX.php?Eposta='+eposta, true);
 	XMLHttpRequestObject.send();
 }
 
@@ -133,6 +133,6 @@ XMLHttpRequestObject2.onreadystatechange = function(){
 
 function egiaztatuPasahitza() {
 	var pasahitza = document.getElementById('pasahitza').value;
-	XMLHttpRequestObject2.open("GET", '../lana/php/soapBezEgiaztatuPasahitzaAJAX.php?Pasahitza='+pasahitza, true);
+	XMLHttpRequestObject2.open("GET", '../azkenlana/php/soapBezEgiaztatuPasahitzaAJAX.php?Pasahitza='+pasahitza, true);
 	XMLHttpRequestObject2.send();
 }

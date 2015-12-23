@@ -1,8 +1,8 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
+	$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	//$sql = mysqli_connect('localhost', 'root', '', 'quiz');
 	// Konexioa egiaztatu
 	if (mysqli_connect_errno())
 	{
@@ -30,12 +30,12 @@
 		<script src="javascript/galderak.js"></script>
 	</head>
 	<body>
-			 <div id = "anonim">
-			 <form method="post" enctype="multipart/form-data" id="nicknameform" name="quiz">
-			 Nickname:<input id="nickname" type= "text" name="nickname" placeholder="user" width="100">			
-			 <input id = "anonimo" type = "button" name= "anonimo"value = "OK" onClick="nickName()"></input>
-			 </form>
-			 </div>
-		<br>
+		<div id = "anonim">
+			<form method="post" enctype="multipart/form-data" id="nicknameform" name="quiz">
+				Nickname:<input id="nickname" type= "text" name="nickname" placeholder="user" width="100">			
+				<input id = "anonimo" type = "button" name= "anonimo"value = "OK" onClick="nickName()"></input>
+			</form>
+		</div>
+		<a href="layout.html">Atzera</a><br>
 	</body>
 </html>

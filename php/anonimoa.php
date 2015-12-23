@@ -1,8 +1,8 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
+	$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	//$sql = mysqli_connect('localhost', 'root', '', 'quiz');
 	// Konexioa egiaztatu
 	if (mysqli_connect_errno())
 	{
@@ -20,7 +20,7 @@
 			 </form>';
 	echo "Erabiltzailea: ".$nickname;
 	
-	$query= mysqli_query($sql, "SELECT Galdera, Erantzuna, Zailtasuna FROM galderak");
+	$query= mysqli_query($sql, "SELECT Galdera, Erantzuna, Zailtasuna FROM Galderak");
 	if(!$query)
 	{
 		echo('Errorea: ' . mysqli_error($sql));
@@ -62,7 +62,7 @@
 					$erantzuna= $galderak['Erantzuna'];			
 					echo '<td>';
 					echo '<input id="erantzuna'.$id.'" type= "text" name="erantzuna" width="100"></td>';
-					echo '<td><div id = "zuzen"><input id = "bidali" type = "button" value ="check" name ="bidali" onClick= "emaitza('.$id.')"></div></form></td>';  
+					echo '<td><div id = "zuzen'.$id.'"><input id = "bidali" type = "button" value ="check" name ="bidali" onClick= "emaitza('.$id.')"></div></form></td>';  
 					echo "</tr>";
 					++$id;
 				}

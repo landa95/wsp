@@ -1,15 +1,15 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
+	$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	//$sql = mysqli_connect('localhost', 'root', '', 'quiz');
 	// Konexioa egiaztatu
 	if (mysqli_connect_errno())
 	{
 		echo "Errorea MYSQLera konektatzean: " . mysqli_connect_error();
 	}
 	session_start();
-	$eposta = $_SESSION['Eposta'];
+	$eposta = $_SESSION['erabiltzaile'];
 	$query="SELECT * FROM `Galderak` WHERE Eposta='$eposta'";
 	$records = mysqli_query($sql, $query);
 	if (!$records)

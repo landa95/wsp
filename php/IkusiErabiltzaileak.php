@@ -1,8 +1,8 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
+	$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	//$sql = mysqli_connect('localhost', 'root', '', 'quiz');
 	// Konexioa egiaztatu
 	if (mysqli_connect_errno())
 	{
@@ -13,7 +13,7 @@
 		header("location: ../login.php");	
 	}
 	if($_SESSION['erabiltzaile'] != "web000@ehu.es"){
-			header("location:../layout.html");
+		header("location:../layout.html");
 	}
 	$query="SELECT * FROM `Erabiltzaile`";
 	$records = mysqli_query($sql, $query);

@@ -1,8 +1,8 @@
 <?php
 	// Konexioa sortu
-	//$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
+	$sql = mysqli_connect('mysql.hostinger.es', 'u275359965_root', 'dbroot', 'u275359965_quiz');
 	// Konexioa lokala sortu
-	$sql = mysqli_connect('localhost', 'root', '', 'quiz');
+	//$sql = mysqli_connect('localhost', 'root', '', 'quiz');
 	// Konexioa egiaztatu
 	if (mysqli_connect_errno())
 	{
@@ -24,7 +24,7 @@
 			$hutsa=0;
 		}
 	
-		$eposta = $_SESSION['Eposta'];
+		$eposta = $_SESSION['erabiltzaile'];
 		$galdera = $_GET['Galdera'];
 		$erantzuna = $_GET['Erantzuna'];
 		$zailtasuna = $_GET['Zailtasuna'];
